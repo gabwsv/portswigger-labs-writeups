@@ -1,2 +1,2 @@
 # portswigger-labs-writeups
-My personal write-ups portswigger labs
+In this repository, I'm adding my writeups and practicing my English.
