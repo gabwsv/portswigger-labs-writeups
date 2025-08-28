@@ -29,7 +29,8 @@ A first step, with never, is understend the application work. Using the devtools
 ```html
 	<link rel="canonical" href="https://id_lab.web-security-academy.net/">
 ```
-![[Pasted image 20250827195951.png]]
+<img width="622" height="41" alt="Pasted image 20250827195951 1" src="https://github.com/user-attachments/assets/9ec398f6-acfc-4a2f-8333-b10ae17cdf18" />
+
 
 The purpose of the "Canonical" tag is to indicate to search engines,  what URL is preferer to an page, eviting duplicate content problems.
 
@@ -37,7 +38,8 @@ example:
 In your website, the content in this page: www\.example\.com/produt?color=blue and page www\.example\.com/produt?color=red is the identic. Using the canonical link to refer a main page.
 
 Test the Reflected, adding a any parameter in URL, with `?a`
-![[Pasted image 20250827200605.png]]
+<img width="1261" height="334" alt="Pasted image 20250827200605" src="https://github.com/user-attachments/assets/2afe476d-de10-469e-9d95-d005a1d5ad58" />
+
 
 The value of parameter sending, is reflected in the attribute ``href``. This is a promising vector for attribute injects in HTML
 
@@ -53,7 +55,8 @@ With the reflection point identified , the next step ir try to inject a new attr
 
 The idea, is a closing the attribute `href` with the double quotes and the inject a new attributes. However, the application encode the double quotes to `%22`, making every payload belong to the `href` attribute , do no break context.
 
-![[Pasted image 20250827201022.png]]
+<img width="710" height="63" alt="Pasted image 20250827201022" src="https://github.com/user-attachments/assets/26f32593-2170-44e6-a598-8bf596b56c74" />
+
 
 Note: the spaces also encoded.
 ###### Payload 2:
@@ -62,7 +65,8 @@ Note: the spaces also encoded.
 
 Is the jump to cat. I changed double quotes to single quotes. The application wasn't expecting the single quotes, what allowed the closed `href` attribute and inject my attributes with success.
 
-![[Pasted image 20250827201419.png]]
+<img width="632" height="50" alt="Pasted image 20250827201419" src="https://github.com/user-attachments/assets/a5e23430-03ba-4ff0-b7d7-713df47106d6" />
+
 
 #### 3. Step: The Final Payload and Execution
 
@@ -73,7 +77,8 @@ The most direct alternatively to `accesskey` is `onclick` event. If `accesskey` 
 **Final Payload:**
 ``?a'accesskey='X'onclick='alert()'``
 
-![[Pasted image 20250827201706.png]]
+<img width="1779" height="574" alt="Pasted image 20250827201706" src="https://github.com/user-attachments/assets/a4ea95eb-5fc7-405f-a7cf-3b4e9c14057b" />
+
 
 Press the ALT+SHIFT+X, the attribute `accesskey` is active, triggering the `onclick` event and execute `alert()` function. Resolved the lab. 
 
