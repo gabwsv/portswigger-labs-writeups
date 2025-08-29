@@ -71,13 +71,6 @@ Click in "Back to Blog" to execute code.
 
 <img width="505" height="217" alt="Pasted image 20250828203650" src="https://github.com/user-attachments/assets/65f1dca2-e8ac-4030-9897-d783ef4ecffa" />
 
-
-Look the `href` use the `javascript:` function, and URL is reflected in the `fetch()`.
-
-```javascript
-href="javascript:fetch('/analytics', {method:'post',body:'/post%3fpostId%3d3'}).finally(_ => window.location = '/')"
-```
-
 ---
 
 ## Conclusion
