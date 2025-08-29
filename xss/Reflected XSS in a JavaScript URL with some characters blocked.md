@@ -68,7 +68,8 @@ When the "Back to blog" link is clicked:
 8. The ``onerror`` handler (`alert`) catches the value `1337`, and the `alert(1337)` box appears, solving the lab.
 
 Click in "Back to Blog" to execute code.
-![[Pasted image 20250828203650.png]]
+<img width="505" height="217" alt="Pasted image 20250828203650" src="https://github.com/user-attachments/assets/65f1dca2-e8ac-4030-9897-d783ef4ecffa" />
+
 
 Look the `href` use the `javascript:` function, and URL is reflected in the `fetch()`.
 
