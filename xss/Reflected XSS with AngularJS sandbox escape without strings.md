@@ -18,7 +18,8 @@ In this write-up, I will explain the step-by-step process I followed in my attem
 In this step, I searched for injection vector in system. Vulnerability is a reflected XSS in search function, i searched for any string and analysing the code source with dev tools.
 
 Identify the `<script>` ng
-![alt text](<Pasted image 20250830122807.png>)
+<img width="1525" height="112" alt="image" src="https://github.com/user-attachments/assets/3674f5a6-c961-4004-9f84-f1f3e1f5163c" />
+
 
 ```javascript
 angular.module('labApp', []).controller('vulnCtrl',function($scope, $parse) {
@@ -33,7 +34,8 @@ An attempt to inject a simple expression like `{{7*7}}` was unsuccessful, as the
 
 I try escape for String with a single quote encoded `&apos;x`, and result is:
 
-![alt text](<Pasted image 20250831093354.png>)
+<img width="819" height="209" alt="image" src="https://github.com/user-attachments/assets/4fd4c3cf-807c-40d8-9f3a-d55ab9794560" />
+
 
 I note in the script, char `&` is null, and duplicate the variables in block.  
 
@@ -51,7 +53,8 @@ angular.module('labApp', []).controller('vulnCtrl',function($scope, $parse) {
 
 However, a ctritical discovery was made when testing special characters, By injecting `&7*7`, I observed that the application was vulnerable to `HTTP Parameter Pollution (HPP)`. The `&` character caused the application create a new, unexpected parameter named ``7*7`` with a value of `49`, as seen in the rendered HTML.
 
-![alt text](<Pasted image 20250831093825.png>)
+<img width="893" height="248" alt="image" src="https://github.com/user-attachments/assets/d12460a7-c397-4350-84d7-93cb3e192fa5" />
+
 
 The confirmed that the injection point was not limited to the `search` parameter's value, but that I could inject new parameters directly into the server-side logic. This became the core strategy for the exploit
 
@@ -70,7 +73,8 @@ The lab's constraints (`no $eval`, `no strings`) led to the first advanced paylo
 
 **Result:** This payload caused the application to break, displaying the raw template `{{value}}`. This was a crucial clue, suggesting that while the expression was being evaluated, a final security layer (likely a Content Security Policy - CSP) was blocking the execution, causing a fatal error 
 
-![alt text](<Pasted image 20250901221437.png>)
+<img width="986" height="63" alt="image" src="https://github.com/user-attachments/assets/1e823938-6ea6-4665-82c3-fd8f933c55af" />
+
 
 **Attempt #2:** Combinated with `charAt=[].join`
 
@@ -120,8 +124,9 @@ angular.module('labApp', []).controller('vulnCtrl',function($scope, $parse) {
 
 **Result:** This successfully solved the lab. Although the `alert()` pop-up was not visually triggered (likely due to the CSP), the lab's backend detected the successful sandbox escape and registered the solution. This is a common behavior in modern security labs, where the proof of concept is the ability to force a security violation, not necessarily a visible alert.
 
-![alt text](<Pasted image 20250901230324.png>)
-![alt text](<Pasted image 20250901230330.png>)
+<img width="1169" height="313" alt="image" src="https://github.com/user-attachments/assets/cc623e14-1b07-4f90-8471-ff7757c0f0f3" />
+<img width="855" height="211" alt="image" src="https://github.com/user-attachments/assets/d22beaa3-b45f-414c-9ce7-96bede68f346" />
+
 
 
 ---
