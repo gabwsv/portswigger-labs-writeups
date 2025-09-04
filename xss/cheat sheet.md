@@ -72,7 +72,7 @@
 	- element.insertAdjacentHTML
 	- element;onevent
 - **jQuery Sinks**
-	- - add()
+	- add()
 	- after()
 	- append()
 	- animate()
