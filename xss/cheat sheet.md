@@ -47,7 +47,7 @@
 	- **Payload:** `onmouseover=alert(1)`
 	- **Payload:** `\';alert()//`
 	- **Payload:** `&apos;-alert(document.domain)-&apos;`
-	- 
+	
 #### 3. DOM XSS
 
 - **Fonte Comum:** `location.hash`
